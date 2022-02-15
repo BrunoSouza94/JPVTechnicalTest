@@ -1,0 +1,96 @@
+<p *ngIf="!persons"><em>Loading...</em></p>
+
+<div *ngIf="persons" class="table-wrapper">
+  <div class="table-title">
+    <div class="row">
+      <div class="col-sm-3">
+        <h2 class="page-title">Lista de <b>Pessoas</b></h2>
+      </div>
+      <div class="button-add">
+        <button (click)="openModal('editModal')" class="btn btn-black" data-toggle="modal">Cadastrar Pessoa</button>
+      </div>
+    </div>
+  </div>
+  <table class='table table-striped' *ngIf="persons">
+    <thead class="table-head">
+      <tr class="list-tr">
+        <th class="list-th">Nome Completo</th>
+        <th class="list-th">Data de Nascimento</th>
+        <th class="list-th">Renda</th>
+        <th class="list-th">CPF</th>
+        <th class="list-th">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="list-tr" [ngClass]="isLast ? 'last-tr' : ''" *ngFor="let person of persons; last as isLast">
+        <td>{{ person.fullName }}</td>
+        <td>{{ person.birthday | date }}</td>
+        <td>{{ person.income }}</td>
+        <td>{{ person.cpf }}</td>
+        <td>
+          <button (click)="openModal('editModal', true, person)" class="btn btn-options" data-toggle="modal">Editar</button>
+          <button (click)="openModal('deleteModal', false, person)" class="btn btn-options" data-toggle="modal">Remover</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div id="editModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 [hidden]="isEdit" class="modal-title">Registrar Pessoa</h4>
+          <h4 [hidden]="!isEdit" class="modal-title">Editar Pessoa</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal('editModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="fullName">Nome Completo</label>
+            <input type="text" [(ngModel)]="currentPerson.fullName" class="form-control" name="fullName" required/>
+          </div>
+          <div class="form-group">
+            <label for="birthday">Data de Nascimento</label>
+            <input *ngIf="!isEdit" type="date" [(ngModel)]="currentPerson.birthday" class="form-control" name="birthday" />
+            <input *ngIf="isEdit" type="datetime" [(ngModel)]="currentPerson.birthday" class="form-control" name="birthday" />
+          </div>
+          <div class="form-group">
+            <label for="income">Renda</label>
+            <input type="number" [(ngModel)]="currentPerson.income" class="form-control" name="income" />
+          </div>
+          <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="text" [(ngModel)]="currentPerson.cpf" class="form-control" name="cpf" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-options" (click)="closeModal('editModal')" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-options" (click)="savePerson()">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="deleteModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h4 class="modal-title">Remover Pessoa</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal('deleteModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Tem certeza que deseja remover o cadastro?</p>
+          <p class="text-warning"><small>Essa ação não pode ser desfeita.</small></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-options" data-dismiss="modal" (click)="closeModal('deleteModal')">Cancelar</button>
+          <button class="btn btn-options" (click)="deletePerson()">Remover</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

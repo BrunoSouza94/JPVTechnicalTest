@@ -1,0 +1,159 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.body{
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+.logo-img{
+    width: 4vw;
+    height: 3vw;
+}
+
+.navbar {
+    background-color: black;
+}
+
+a.navbar-brand p{
+    text-decoration: none;
+    color: white;
+    margin-bottom: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-nav {
+  position: relative;
+  top: 2vw;
+  padding-bottom: 2px;
+  padding-right: 5vw;
+}
+/* Table Styles */
+.table-wrapper {
+    width: 95vw;
+    padding-left: 5vw;
+}
+.table-title {
+  color: white;
+  border-left: 0px;
+  padding-bottom: 20px;
+  background-color: #ffa801;
+  border: 2px solid black;
+}
+
+.table-head {
+  background-color: black;
+  color: white;
+}
+
+.list-tr {
+  border-left: black solid 2px;
+  border-right: black solid 2px;
+}
+
+.last-tr {
+  border-bottom: black solid 2px;
+}
+
+.table > thead > tr > th {
+  border: black solid 2px;
+}
+
+.btn-black {
+  background-color: black;
+  color: #ffa801;
+  border: 1px solid #ffa801;
+  font-weight: 900;
+}
+
+.btn-black:hover {
+  background-color: #ffa801;
+  color: white;
+  border: 1px solid white;
+  font-weight: 900;
+}
+
+.btn-options {
+  background-color: #ffa801;
+  color: black;
+  border: 1px solid black;
+  width: 33%;
+  padding: 0.3em;
+  margin-left: 1vw;
+  font-weight: 900;
+}
+
+.btn-options:hover {
+  background-color: black;
+  color: #ffa801;
+  border: 1px solid #ffa801;
+  font-weight: 900;
+}
+
+.row {
+    position: relative;
+}
+
+.button-add {
+  position: absolute;
+  right: 5vw;
+  bottom: 0px;
+}
+
+.col-sm-3 h2 {
+  margin: 0;
+  padding-top: 1vh;
+  padding-left: 1vw;
+}
+/* Fim Table */
+
+/* Modal */
+.modal {
+  padding-top: 5vw;
+  background-color: rgba(0,0,0, 0.7); 
+}
+
+.modal-header {
+  background-color: rgba(0, 0, 0, .05);
+  font-weight: 900;
+}
+
+.modal-body {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.modal-footer {
+  background-color: black;
+  color: white;
+}
+/* Fim Modal */
