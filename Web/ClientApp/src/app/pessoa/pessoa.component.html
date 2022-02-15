@@ -40,7 +40,7 @@
 <div id="editModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="savePerson()">
         <div class="modal-header">
           <h4 [hidden]="isEdit" class="modal-title">Registrar Pessoa</h4>
           <h4 [hidden]="!isEdit" class="modal-title">Editar Pessoa</h4>
@@ -49,25 +49,37 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="fullName">Nome Completo</label>
-            <input type="text" [(ngModel)]="currentPerson.fullName" class="form-control" name="fullName" required/>
+            <input type="text" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.fullName.errors }" />
+            <div *ngIf="submitted && registerForm.controls.fullName.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.controls.fullName.errors.required">O campo é obrigatório</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="birthday">Data de Nascimento</label>
-            <input *ngIf="!isEdit" type="date" [(ngModel)]="currentPerson.birthday" class="form-control" name="birthday" />
-            <input *ngIf="isEdit" type="datetime" [(ngModel)]="currentPerson.birthday" class="form-control" name="birthday" />
+            <input type="date" formControlName="birthday" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.birthday.errors }" />
+            <div *ngIf="submitted && registerForm.controls.birthday.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.controls.birthday.errors.required">O campo é obrigatório</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="income">Renda</label>
-            <input type="number" [(ngModel)]="currentPerson.income" class="form-control" name="income" />
+            <input type="number" formControlName="income" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.income.errors }" />
+            <div *ngIf="submitted && registerForm.controls.income.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.controls.income.errors.required">O campo é obrigatório</div>
+            </div>
           </div>
           <div class="form-group">
             <label for="cpf">CPF</label>
-            <input type="text" [(ngModel)]="currentPerson.cpf" class="form-control" name="cpf" />
+            <input type="text" formControlName="cpf" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.cpf.errors }" />
+            <div *ngIf="submitted && registerForm.controls.cpf.errors" class="invalid-feedback">
+              <div *ngIf="registerForm.controls.cpf.errors.required">O campo é obrigatório</div>
+              <div *ngIf="registerForm.controls.cpf.errors.pattern">O campo deve ser preenchido no formato: 999.999.999-99</div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-options" (click)="closeModal('editModal')" data-dismiss="modal">Cancelar</button>
-          <button class="btn btn-options" (click)="savePerson()">Salvar</button>
+          <button type="button" class="btn btn-options" (click)="closeModal('editModal')" >Cancelar</button>
+          <button type="submit" class="btn btn-options">Salvar</button>
         </div>
       </form>
     </div>
